@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        for (int i = 0; i < 1000; i++) {
+            MarkerStyle style = MarkerStyleFactory.getStyle("gas", "⛽", "green");
+            MapMarker marker = new MapMarker("АЗС №" + i, i, i * 2, style);
+            marker.display();
+        }
+
+        for (int i = 0; i < 500; i++) {
+            MarkerStyle style = MarkerStyleFactory.getStyle("hospital", "🏥", "red");
+            MapMarker marker = new MapMarker("Больница №" + i, i, i * 3, style);
+            marker.display();
+        }
+
+        System.out.println("Уникальных стилей: " + MarkerStyleFactory.getTotalStyles());
+    }
+}
