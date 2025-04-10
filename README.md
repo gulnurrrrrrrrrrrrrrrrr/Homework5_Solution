@@ -1,4 +1,5 @@
 1. Proxy Pattern – Homework
+
 What problem has been solved?
 The problem was optimizing the loading of high-resolution images for the real estate agency's website. 
 Without a proxy, each image would load at once, which would slow down the site dueto the large amount of data. 
@@ -11,6 +12,7 @@ This reduces memory consumption and speeds up the initial loading of the page. A
 
 
 2. Flyweight Pattern – Homework
+
 What problem has been solved?
 The problem was excessive memory consumption when creating thousands of markers with repeating styles (icon, color). 
 Without the Flyweight template, each marker would store its own style data, which would lead to duplication and inefficient use of resources.
