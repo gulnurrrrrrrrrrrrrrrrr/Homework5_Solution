@@ -8,6 +8,8 @@ How did the template simplify or optimize the design?
 The Proxy template shares responsibility:
 ImageProxy manages access and deferred loading, while HighResolutionImage is responsible for working with the image itself. 
 This reduces memory consumption and speeds up the initial loading of the page. Adding a Protected Image Proxy enhances security by limiting image uploads to authorized agents only.
+
+
 2. Flyweight Pattern – Homework
 What problem has been solved?
 The problem was excessive memory consumption when creating thousands of markers with repeating styles (icon, color). 
