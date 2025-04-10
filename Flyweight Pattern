@@ -1,0 +1,52 @@
+// Flyweight — общие данные
+public class MarkerStyle {
+    private String icon;
+    private String color;
+
+    public MarkerStyle(String icon, String color) {
+        this.icon = icon;
+        this.color = color;
+    }
+
+    public void display(String name, int x, int y) {
+        System.out.println("Место: " + name + " [x=" + x + ", y=" + y + "] с иконкой: " + icon + " и цветом: " + color);
+    }
+}
+
+// Фабрика Flyweight 
+import java.util.HashMap;
+import java.util.Map;
+
+public class MarkerStyleFactory {
+    private static Map<String, MarkerStyle> styles = new HashMap<>();
+
+    public static MarkerStyle getStyle(String key, String icon, String color) {
+        if (!styles.containsKey(key)) {
+            styles.put(key, new MarkerStyle(icon, color));
+            System.out.println("Создан новый стиль: " + key);
+        }
+        return styles.get(key);
+    }
+
+    public static int getTotalStyles() {
+        return styles.size();
+    }
+}
+
+// Маркер — использует Flyweight 
+public class MapMarker {
+    private int x, y;
+    private String name;
+    private MarkerStyle style;
+
+    public MapMarker(String name, int x, int y, MarkerStyle style) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.style = style;
+    }
+
+    public void display() {
+        style.display(name, x, y);
+    }
+}
