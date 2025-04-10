@@ -1,0 +1,70 @@
+// Интерфейс
+public interface Image {
+    void displayThumbnail();
+    void displayFullImage();
+}
+
+// Реальный объект
+public class HighResolutionImage implements Image {
+    private String filename;
+
+    public HighResolutionImage(String filename) {
+        this.filename = filename;
+        loadImage();
+    }
+
+    private void loadImage() {
+        System.out.println("Загрузка изображения в полном разрешении: " + filename);
+    }
+
+    @Override
+    public void displayThumbnail() {
+        System.out.println("Показ миниатюры для: " + filename);
+    }
+
+    @Override
+    public void displayFullImage() {
+        System.out.println("Показ ПОЛНОГО изображения: " + filename);
+    }
+}
+
+// Прокси
+public class ImageProxy implements Image {
+    private String filename;
+    private HighResolutionImage realImage;
+
+    public ImageProxy(String filename) {
+        this.filename = filename;
+    }
+
+    @Override
+    public void displayThumbnail() {
+        System.out.println("Показ миниатюры (через прокси) для: " + filename);
+    }
+
+    @Override
+    public void displayFullImage() {
+        if (realImage == null) {
+            realImage = new HighResolutionImage(filename);
+        }
+        realImage.displayFullImage();
+    }
+}
+
+// Прокси с авторизацией
+public class ProtectedImageProxy extends ImageProxy {
+    private boolean isAuthenticated;
+
+    public ProtectedImageProxy(String filename, boolean isAuthenticated) {
+        super(filename);
+        this.isAuthenticated = isAuthenticated;
+    }
+
+    public void uploadImage() {
+        if (isAuthenticated) {
+            System.out.println("Изображение загружено.");
+        } else {
+            System.out.println("Ошибка: необходимо войти в систему для загрузки.");
+        }
+    }
+}
